@@ -1,0 +1,11 @@
+<button (click)="add()">Create</button>
+
+<ul class="page__list">
+    <li *ngFor="let item of items">
+        <div class="page__item">
+            <div>{{item.title || item.name}}</div>
+            <button (click)="edit(page ,item.id)">edit</button>
+            <button (click)="remove(page, item.id)">remove</button>
+        </div>
+    </li>
+</ul>
