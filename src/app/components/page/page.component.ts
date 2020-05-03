@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { AppService, User, Post } from 'src/app/server.service';
+import { AppService } from 'src/app/server.service';
 
 @Component({
     selector: 'app-page',
@@ -10,7 +10,10 @@ export class PageComponent implements OnInit {
 
     @Input() items;
     @Input() page: string;
-    newTopic = "test";
+    @Input() objectId;
+    @Input() newTopic: string;
+    formCreate = false;
+    formEdit = false;
 
     constructor(
         private service: AppService,
@@ -21,25 +24,23 @@ export class PageComponent implements OnInit {
         this.items.push( newItem(this.page, this.newTopic, this.items) );
 
         function newItem(page, newTopic, items) {
-            console.log(' newItem ');
-            console.log(page);
             return page === 'user'
             ? { name: newTopic, id: items.length + 1 }
             : { title: newTopic, id: items.length + 1 }
         }
+
+        this.formCreate = !this.formCreate;
     }
 
-    edit(page, id) {
-        console.log(' page: ' + page + ", id :" + id);
+    edit(id) {
         this.service.edit(this.items, id, this.newTopic);
+        this.formCreate ? this.formCreate = !this.formCreate : this.formEdit = !this.formEdit;
     }
 
-    remove(page, id) {
-        console.log(' page: ' + page + ", id :" + id);
-        this.service.remove(id, page);
+    remove(id) {
+        this.service.remove(id, this.page);
         this.items = this.items.filter(el => el.id !== id);
     }
 
     ngOnInit(): void { }
-
 }

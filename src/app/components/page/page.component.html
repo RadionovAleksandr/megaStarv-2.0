@@ -1,11 +1,28 @@
-<button (click)="add()">Create</button>
+<button *ngIf="items" (click)="formCreate = !formCreate">Create</button>
 
 <ul class="page__list">
     <li *ngFor="let item of items">
         <div class="page__item">
-            <div>{{item.title || item.name}}</div>
-            <button (click)="edit(page ,item.id)">edit</button>
-            <button (click)="remove(page, item.id)">remove</button>
+            <div>{{item.title || item.name}}
+                <button (click)="formEdit = !formEdit ; objectId = item.id">edit</button>
+                <button (click)="remove(item.id)">remove</button>
+            </div>
         </div>
     </li>
 </ul>
+
+<div class="modal-wrap" *ngIf="formEdit">
+    <div class="modal">
+        <input type="text" [(ngModel)]="newTopic">
+        <button (click)="edit(objectId)">Ок</button>
+        <button (click)="formEdit = !formEdit">Отмена</button>
+    </div>
+</div>
+
+<div class="modal-wrap" *ngIf="formCreate">
+    <div class="modal">
+        <input type="text" [(ngModel)]="newTopic">
+        <button (click)="add()">Ок</button>
+        <button (click)="formEdit = !formCreate">Отмена</button>
+    </div>
+</div>
