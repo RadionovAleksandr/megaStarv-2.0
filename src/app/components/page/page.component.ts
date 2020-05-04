@@ -14,6 +14,7 @@ export class PageComponent implements OnInit {
     @Input() newTopic: string;
     formCreate = false;
     formEdit = false;
+    
 
     constructor(
         private service: AppService,
@@ -41,6 +42,12 @@ export class PageComponent implements OnInit {
         this.service.remove(id, this.page);
         this.items = this.items.filter(el => el.id !== id);
     }
+
+    // activeTh(id) {
+        // this.items.forEach(element => {
+        //     element.id === id ?  : false;
+        // });
+    // }
 
     ngOnInit(): void { }
 }

@@ -1,24 +1,12 @@
 <h1>{{page || "choose an object in the side bar"}}</h1>
 
 <section class="page">
-    <button class="page__btn-create" *ngIf="items" (click)="formCreate = !formCreate">Create new</button>
-    <ul class="page__list">
-        <li *ngFor="let item of items">
-            <div class="page__item">
-                <div class="item__text" title="{{item.title || item.name}}">{{item.title || item.name}}</div>
-                <div class="item__icons">
-                    <i class="far fa-edit item__icon" (click)="formEdit = !formEdit ; objectId = item.id" title="edit"></i>
-                    <i class="far fa-trash-alt item__icon" (click)="remove(item.id)" title="remove"></i>
-                </div>
-            </div>
-        </li>
-    </ul>
-
+    <button class="page__btn-create" *ngIf="items" (click)="formCreate = true">Create new</button>
     <div class="modal-wrap " *ngIf="formEdit ">
         <div class="modal ">
-            <input type="text " [(ngModel)]="newTopic ">
+            <input type="text " [(ngModel)]="newTopic">
             <button (click)="edit(objectId) ">Ок</button>
-            <button (click)="formEdit=! formEdit ">Отмена</button>
+            <button class="modal__btn--cancel" (click)="formEdit=! formEdit ">Отмена</button>
         </div>
     </div>
 
@@ -26,7 +14,19 @@
         <div class="modal ">
             <input type="text " [(ngModel)]="newTopic ">
             <button (click)="add() ">Ок</button>
-            <button (click)="formEdit=! formCreate ">Отмена</button>
+            <button class="modal__btn--cancel" (click)="formCreate=! formCreate ">Отмена</button>
         </div>
     </div>
+    <ul class="page__list">
+        <li *ngFor="let item of items">
+            <div #th class="page__item">
+                <div class="item__text" title="{{item.title || item.name}}">{{item.title || item.name}}</div>
+                <div class="item__icons">
+                    <i class="far fa-edit item__icon" (click)="formEdit = true; objectId = item.id" title="edit"></i>
+                    <i class="far fa-trash-alt item__icon" (click)="remove(item.id)" title="remove"></i>
+                </div>
+            </div>
+        </li>
+    </ul>
+
 </section>

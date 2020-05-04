@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { delay } from 'rxjs/operators';
 
-
 export interface User {
     completed: boolean;
     title: string;
@@ -15,7 +14,6 @@ export interface Post {
     title?: string;
     body?: string;
 }
-
 @Injectable({ providedIn: 'root' })
 export class AppService {
 
@@ -43,14 +41,10 @@ export class AppService {
     }
 
     remove(id: number, page: string): Observable<void> {
-        console.log(' remove service')
         return this.http.delete<void>(`https://jsonplaceholder.typicode.com/${page}/${id}`);
     }
 
-
-
     addUsers(user: User): Observable<User> {
-        return this.http.post<User>('https://jsonplaceholder.typicode.com/todos', user)
+        return this.http.post<User>('https://jsonplaceholder.typicode.com/todos', user);
     }
-
 }

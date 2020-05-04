@@ -21,3 +21,16 @@
         cursor: pointer;
     }
 }
+
+input {
+    height: 26px;
+    border: none;
+    border-radius: 5px 0 0 5px;
+    margin-top: 20px;
+    padding: 5px 10px;
+}
+
+.modal__btn--cancel {
+    margin-left: 1px;
+    border-radius: 0 5px 5px 0;
+}
