@@ -9,17 +9,19 @@ import { AppService } from './server.service';
 export class AppComponent {
     title = 'megaStar-v2';
     items;
+    loadingPage = false;
     currentPage: string;
     constructor(
         private service: AppService,
     ) { }
 
     loadPage(name) {
-        console.log(" loadPage " + name);
+        this.loadingPage = true;
         this.service.fetch(name)
             .subscribe(x => {
                 this.currentPage = name;
                 this.items = x;
+                this.loadingPage = false;
             });
     }
 }

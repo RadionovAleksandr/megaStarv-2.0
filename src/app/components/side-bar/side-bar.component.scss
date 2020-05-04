@@ -1,0 +1,9 @@
+.side-bar {
+    padding-left: 40px;
+    margin-top: 20px;
+    &__item {
+        padding: 10px 0;
+        cursor: pointer;
+    }
+    background-color: #B9DBE6;
+}

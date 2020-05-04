@@ -23,8 +23,6 @@ export class SideBarComponent implements OnInit {
 
     onSideBar() {
         this.onPage.emit(this.currentPage);
-        console.log(this.onPage);
-        console.log(this.currentPage);
     }
 
     ngOnInit(): void {

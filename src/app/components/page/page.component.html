@@ -1,28 +1,32 @@
-<button *ngIf="items" (click)="formCreate = !formCreate">Create</button>
+<h1>{{page || "choose an object in the side bar"}}</h1>
 
-<ul class="page__list">
-    <li *ngFor="let item of items">
-        <div class="page__item">
-            <div>{{item.title || item.name}}
-                <button (click)="formEdit = !formEdit ; objectId = item.id">edit</button>
-                <button (click)="remove(item.id)">remove</button>
+<section class="page">
+    <button class="page__btn-create" *ngIf="items" (click)="formCreate = !formCreate">Create new</button>
+    <ul class="page__list">
+        <li *ngFor="let item of items">
+            <div class="page__item">
+                <div class="item__text" title="{{item.title || item.name}}">{{item.title || item.name}}</div>
+                <div class="item__icons">
+                    <i class="far fa-edit item__icon" (click)="formEdit = !formEdit ; objectId = item.id" title="edit"></i>
+                    <i class="far fa-trash-alt item__icon" (click)="remove(item.id)" title="remove"></i>
+                </div>
             </div>
+        </li>
+    </ul>
+
+    <div class="modal-wrap " *ngIf="formEdit ">
+        <div class="modal ">
+            <input type="text " [(ngModel)]="newTopic ">
+            <button (click)="edit(objectId) ">Ок</button>
+            <button (click)="formEdit=! formEdit ">Отмена</button>
         </div>
-    </li>
-</ul>
-
-<div class="modal-wrap" *ngIf="formEdit">
-    <div class="modal">
-        <input type="text" [(ngModel)]="newTopic">
-        <button (click)="edit(objectId)">Ок</button>
-        <button (click)="formEdit = !formEdit">Отмена</button>
     </div>
-</div>
 
-<div class="modal-wrap" *ngIf="formCreate">
-    <div class="modal">
-        <input type="text" [(ngModel)]="newTopic">
-        <button (click)="add()">Ок</button>
-        <button (click)="formEdit = !formCreate">Отмена</button>
+    <div class="modal-wrap " *ngIf="formCreate ">
+        <div class="modal ">
+            <input type="text " [(ngModel)]="newTopic ">
+            <button (click)="add() ">Ок</button>
+            <button (click)="formEdit=! formCreate ">Отмена</button>
+        </div>
     </div>
-</div>
+</section>

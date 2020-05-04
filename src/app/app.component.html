@@ -1,2 +1,6 @@
-<app-side-bar class="side-bar" (onPage)="loadPage($event)"></app-side-bar>
-<app-page class="page" [items]="items" [page]="currentPage"></app-page>
+<app-side-bar class="side-bar-wrap" (onPage)="loadPage($event)"></app-side-bar>
+<app-page class="page" [items]="items" [page]="currentPage" *ngIf="!loadingPage; else loading"></app-page>
+
+<ng-template #loading>
+    <div class="dot-spin"></div>
+</ng-template>

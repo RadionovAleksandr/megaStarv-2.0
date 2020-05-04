@@ -1,0 +1,23 @@
+.page {
+    &__list {
+        width: 30%;
+    }
+    &__item {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+.item {
+    &__text {
+        white-space: nowrap;
+        overflow: hidden;
+    }
+    &__icons {
+        min-width: fit-content;
+    }
+    &__icon {
+        margin: 0 5px;
+        cursor: pointer;
+    }
+}

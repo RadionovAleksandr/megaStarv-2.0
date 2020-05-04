@@ -1,3 +1,9 @@
-.side-bar {
+@import "./spiner.scss";
+.side-bar-wrap {
     width: 15%;
+}
+
+.page {
+    padding: 0 15% 0 5%;
+    width: 80%;
 }
